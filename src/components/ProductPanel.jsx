@@ -1,10 +1,11 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react'
 import { addToCart, toggleWishlist } from "../redux/actions";
 import { PRODUCTS } from "../data/products";
+import { useDispatch, useSelector } from 'react-redux';
 
-const ProductsPanel = () => {
-  const dispatch = useDispatch();
+
+const ProductPanel = () => {
+    const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const wishItems = useSelector((state) => state.wishlist.items);
 
@@ -12,7 +13,6 @@ const ProductsPanel = () => {
   const visibleProducts = PRODUCTS.filter(
     (p) => !cartItems.some((i) => i.productId === p.id),
   );
-
   return (
     <div>
       <div className="section-title">All Products</div>
@@ -66,4 +66,19 @@ const ProductsPanel = () => {
   );
 };
 
-export default ProductsPanel;
+  
+
+export default ProductPanel
+
+
+
+
+
+
+
+
+
+
+
+
+
