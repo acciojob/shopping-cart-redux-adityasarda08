@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, toggleWishlist } from "../redux/actions";
 import { PRODUCTS } from "../data/products";
 
-const ProductsPanel = () => {
+const ProductPanel = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const wishItems = useSelector((state) => state.wishlist.items);
 
   return (
-    <div className="container">   {/* ✅ ADD THIS */}
-      <div className="row">       {/* ✅ ADD THIS */}
-        <div className="col-12">  {/* ✅ ADD THIS */}
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
           <h3>All Products</h3>
 
           {PRODUCTS.map((product) => {
@@ -19,35 +19,34 @@ const ProductsPanel = () => {
             const inWish = wishItems.includes(product.id);
 
             return (
-              <div key={product.id} className="card custom-card mb-3">
+              <div key={product.id} className="custom-card">
                 <div className="card-body">
-                  <h4 className="card-title">{product.name}</h4>
-                  <p className="card-text">{product.tag}</p>
-                  <p className="card-text">Rs {product.price}</p>
+                  {/* ✅ IMAGE ADDED */}
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{ width: "100px", height: "100px" }}
+                  />
 
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => dispatch(addToCart(product.id))}
-                  >
+                  <h4>{product.name}</h4>
+                  <p>{product.tag}</p>
+                  <p>Rs {product.price}</p>
+
+                  <button onClick={() => dispatch(addToCart(product.id))}>
                     Add To Cart
                   </button>
 
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => dispatch(toggleWishlist(product.id))}
-                  >
-                    Wishlist
+                  <button onClick={() => dispatch(toggleWishlist(product.id))}>
+                    Add To Wishlist
                   </button>
                 </div>
               </div>
             );
           })}
-
         </div>
       </div>
     </div>
   );
 };
 
-
-export default ProductsPanel;
+export default ProductPanel;
