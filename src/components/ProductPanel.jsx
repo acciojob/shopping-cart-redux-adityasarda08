@@ -6,45 +6,41 @@ import { PRODUCTS } from "../data/products";
 const ProductPanel = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  const wishItems = useSelector((state) => state.wishlist.items);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <h3>All Products</h3>
+    <div>
+      <h3>All Products</h3>
 
-          {PRODUCTS.map((product) => {
-            const inCart = cartItems.some((i) => i.productId === product.id);
-            const inWish = wishItems.includes(product.id);
+      {PRODUCTS.map((product) => (
+        <div key={product.id} className="custom-card card">
+          <div className="card-body">
 
-            return (
-              <div key={product.id} className="custom-card">
-                <div className="card-body">
-                  {/* ✅ IMAGE ADDED */}
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    style={{ width: "100px", height: "100px" }}
-                  />
+            {/* IMAGE */}
+            <img src={product.image} alt={product.name} width="100" />
 
-                  <h4>{product.name}</h4>
-                  <p>{product.tag}</p>
-                  <p>Rs {product.price}</p>
+            <h4>{product.name}</h4>
+            <p>{product.tag}</p>
+            <p>Rs {product.price}</p>
 
-                  <button onClick={() => dispatch(addToCart(product.id))}>
-                    Add To Cart
-                  </button>
+            {/* MUST BE btn-primary */}
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(addToCart(product.id))}
+            >
+              Add To Cart
+            </button>
 
-                  <button onClick={() => dispatch(toggleWishlist(product.id))}>
-                    Add To Wishlist
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+            {/* Wishlist */}
+            <button
+              className="btn btn-danger"
+              onClick={() => dispatch(toggleWishlist(product.id))}
+            >
+              Add To Wishlist
+            </button>
+
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
