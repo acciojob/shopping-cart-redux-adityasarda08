@@ -51,8 +51,7 @@ const CartPanel = () => {
                 const product = PRODUCTS.find(p => p.id === item.productId);
                 if (!product) return null;
                 return (
-                  <div key={item.productId}>
-                    <div className="card custom-card mb-3">
+                    <div key={item.productId} className="card custom-card mb-3">
                       <div className="card-body">
                         <div className="d-flex align-items-center">
                           <img
@@ -90,7 +89,6 @@ const CartPanel = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
                 );
               })
             )}
@@ -105,8 +103,7 @@ const CartPanel = () => {
               wishlistProducts.map(product => {
                 const inCart = cartItems.some(i => i.productId === product.id);
                 return (
-                  <div key={product.id}>
-                    <div className="card custom-card mb-3">
+                    <div  key={product.id} className="card custom-card mb-3">
                       <div className="card-body">
                         <div className="d-flex align-items-center">
                           <img
@@ -134,7 +131,6 @@ const CartPanel = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
                 );
               })
             )}

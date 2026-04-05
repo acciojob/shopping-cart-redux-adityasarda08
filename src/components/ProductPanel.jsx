@@ -10,6 +10,7 @@ const ProductsPanel = () => {
 
   return (
     <div className="container-fluid mt-3">
+        <h3>Products</h3>
       <div className="row">
         {PRODUCTS.map((product) => {
           const inCart = cartItems.some((i) => i.productId === product.id);
@@ -23,7 +24,7 @@ const ProductsPanel = () => {
                   alt={product.name}
                 />
                 <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{product.name}</h5>
+                  <h4 className="card-title">{product.name}</h4>
                   <p className="card-text text-muted">{product.tag}</p>
                   <p className="card-text font-weight-bold">
                     Rs {product.price.toLocaleString()}
