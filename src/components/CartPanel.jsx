@@ -38,6 +38,7 @@ const CartPanel = () => {
   return (
     <div className="container-fluid mt-4">
       <div className="row">
+
         {/* LEFT COLUMN */}
         <div className="col-md-8">
 
@@ -51,44 +52,45 @@ const CartPanel = () => {
                 const product = PRODUCTS.find(p => p.id === item.productId);
                 if (!product) return null;
                 return (
-                    <div key={item.productId} className="card custom-card mb-3">
-                      <div className="card-body">
-                        <div className="d-flex align-items-center">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
-                            className="mr-3"
-                          />
-                          <div className="flex-grow-1">
-                            <h6 className="mb-0">{product.name}</h6>
-                            <small className="text-muted">{product.tag}</small>
-                            <div>Rs {(product.price * item.qty).toLocaleString()}</div>
-                          </div>
-                          <div className="d-flex align-items-center">
-                            <button
-                              className="btn btn-sm btn-outline-secondary"
-                              onClick={() => dispatch(decQty(product.id))}
-                            >−</button>
-                            <span className="mx-2">{item.qty}</span>
-                            <button
-                              className="btn btn-sm btn-outline-secondary"
-                              onClick={() => dispatch(incQty(product.id))}
-                            >+</button>
-                          </div>
-                          <button
-                            className="btn btn-sm btn-danger ml-3"
-                            onClick={() => dispatch(removeFromCart(product.id))}
-                          >Remove</button>
-                          <button
-                            className="btn btn-sm btn-outline-danger ml-2"
-                            onClick={() => dispatch(toggleWishlist(product.id))}
-                          >
-                            {wishItems.includes(product.id) ? '❤️' : '🤍'}
-                          </button>
+                  // ✅ key directly on .custom-card — no wrapper div
+                  <div key={item.productId} className="card custom-card mb-3">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
+                          className="mr-3"
+                        />
+                        <div className="flex-grow-1">
+                          <h6 className="mb-0">{product.name}</h6>
+                          <small className="text-muted">{product.tag}</small>
+                          <div>Rs {(product.price * item.qty).toLocaleString()}</div>
                         </div>
+                        <div className="d-flex align-items-center">
+                          <button
+                            className="btn btn-sm btn-outline-secondary"
+                            onClick={() => dispatch(decQty(product.id))}
+                          >−</button>
+                          <span className="mx-2">{item.qty}</span>
+                          <button
+                            className="btn btn-sm btn-outline-secondary"
+                            onClick={() => dispatch(incQty(product.id))}
+                          >+</button>
+                        </div>
+                        <button
+                          className="btn btn-sm btn-danger ml-3"
+                          onClick={() => dispatch(removeFromCart(product.id))}
+                        >Remove</button>
+                        <button
+                          className="btn btn-sm btn-outline-danger ml-2"
+                          onClick={() => dispatch(toggleWishlist(product.id))}
+                        >
+                          {wishItems.includes(product.id) ? '❤️' : '🤍'}
+                        </button>
                       </div>
                     </div>
+                  </div>
                 );
               })
             )}
@@ -103,34 +105,35 @@ const CartPanel = () => {
               wishlistProducts.map(product => {
                 const inCart = cartItems.some(i => i.productId === product.id);
                 return (
-                    <div  key={product.id} className="card custom-card mb-3">
-                      <div className="card-body">
-                        <div className="d-flex align-items-center">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
-                            className="mr-3"
-                          />
-                          <div className="flex-grow-1">
-                            <h6 className="mb-0">{product.name}</h6>
-                            <small className="text-muted">{product.tag}</small>
-                            <div>Rs {product.price.toLocaleString()}</div>
-                          </div>
-                          <button
-                            className="btn btn-primary mr-2"
-                            onClick={() => !inCart && dispatch(addToCart(product.id))}
-                            disabled={inCart}
-                          >
-                            {inCart ? 'In Cart' : 'Add To Cart'}
-                          </button>
-                          <button
-                            className="btn btn-outline-danger"
-                            onClick={() => dispatch(toggleWishlist(product.id))}
-                          >Remove</button>
+                  // ✅ key directly on .custom-card — no wrapper div
+                  <div key={product.id} className="card custom-card mb-3">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
+                          className="mr-3"
+                        />
+                        <div className="flex-grow-1">
+                          <h6 className="mb-0">{product.name}</h6>
+                          <small className="text-muted">{product.tag}</small>
+                          <div>Rs {product.price.toLocaleString()}</div>
                         </div>
+                        <button
+                          className="btn btn-primary mr-2"
+                          onClick={() => !inCart && dispatch(addToCart(product.id))}
+                          disabled={inCart}
+                        >
+                          {inCart ? 'In Cart' : 'Add To Cart'}
+                        </button>
+                        <button
+                          className="btn btn-outline-danger"
+                          onClick={() => dispatch(toggleWishlist(product.id))}
+                        >Remove</button>
                       </div>
                     </div>
+                  </div>
                 );
               })
             )}
@@ -183,6 +186,7 @@ const CartPanel = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

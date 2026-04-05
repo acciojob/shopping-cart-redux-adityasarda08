@@ -10,14 +10,15 @@ const ProductsPanel = () => {
 
   return (
     <div className="container-fluid mt-3">
-        <h3>Products</h3>
+      <h3>All Products</h3>
       <div className="row">
         {PRODUCTS.map((product) => {
           const inCart = cartItems.some((i) => i.productId === product.id);
           const inWish = wishItems.includes(product.id);
           return (
-            <div className="col-md-4 mb-4" key={product.id}>
-              <div className="card custom-card h-100">
+            <div key={product.id} className="card custom-card mb-3">
+              {" "}
+              {/* key + custom-card directly */}
                 <img
                   src={product.image}
                   className="card-img-top"
@@ -46,7 +47,6 @@ const ProductsPanel = () => {
                   </div>
                 </div>
               </div>
-            </div>
           );
         })}
       </div>
