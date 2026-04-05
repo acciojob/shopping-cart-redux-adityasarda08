@@ -1,13 +1,22 @@
+import React from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import ProductsPage from '../pages/ProductsPage';
+import CartPage     from '../pages/CartPage';
+import Navbar from './Navbar';
+import "../styles/App.css";
+import WishlistPage from '../pages/WishlistPage';
 
-import React from "react";
-import './../styles/App.css';
+const App = () => (
+  <BrowserRouter>
+    <Navbar />
+    <main className="main-content">
+      <Switch>
+          <Route exact path="/"         component={ProductsPage} />
+          <Route path="/cart"           component={CartPage} />
+          <Route path="/wishlist"       component={WishlistPage} /> 
+      </Switch>
+    </main>
+  </BrowserRouter>
+);
 
-const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
-}
-
-export default App
+export default App;
