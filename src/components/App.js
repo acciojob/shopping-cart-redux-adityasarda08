@@ -1,22 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import ProductsPage from '../pages/ProductsPage';
-import CartPage     from '../pages/CartPage';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 import Navbar from './Navbar';
+import ProductsPanel from './ProductsPanel';
+import CartPanel from './CartPanel';
 import "../styles/App.css";
-import WishlistPage from '../pages/WishlistPage';
 
 const App = () => (
-  <BrowserRouter>
+  <Provider store={store}>
     <Navbar />
-    <main className="main-content">
-      <Switch>
-          <Route exact path="/"         component={ProductsPage} />
-          <Route path="/cart"           component={CartPage} />
-          <Route path="/wishlist"       component={WishlistPage} /> 
-      </Switch>
-    </main>
-  </BrowserRouter>
+    <div className="main-wrap">
+      <ProductsPanel />
+      <CartPanel />
+    </div>
+  </Provider>
 );
 
 export default App;
