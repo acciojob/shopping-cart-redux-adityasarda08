@@ -1,19 +1,18 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "../redux/store";
-import Navbar from "./Navbar";
-import ProductPanel from "./ProductPanel";
-import CartPanel from "./CartPanel";
-import "../styles/App.css";
-
 const App = () => (
   <Provider store={store}>
     <div>
+
+      {/* 1st child */}
       <Navbar />
-      <ProductPanel />
+
+      {/* 2nd child (IMPORTANT WRAPPER) */}
+      <div>
+        <ProductPanel />
+      </div>
+
+      {/* 3rd child */}
       <CartPanel />
+
     </div>
   </Provider>
 );
-
-export default App;

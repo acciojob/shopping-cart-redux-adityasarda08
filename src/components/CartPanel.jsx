@@ -15,57 +15,66 @@ const CartPanel = () => {
 
   return (
     <div>
-
       {/* CART */}
       <h3>Cart</h3>
 
       {cartItems.map((item) => {
-        const product = PRODUCTS.find(p => p.id === item.productId);
+        const product = PRODUCTS.find((p) => p.id === item.productId);
 
         return (
           <div key={item.productId} className="custom-card">
             <div className="card-body">
-
               <h4>{product.name}</h4>
 
-              {/* IMPORTANT: ALL buttons MUST have class btn */}
-              <button className="btn" onClick={() => dispatch(incQty(product.id))}>
-                +
-              </button>
-
-              <button className="btn" onClick={() => dispatch(decQty(product.id))}>
-                -
-              </button>
-
-              <button className="btn" onClick={() => dispatch(removeFromCart(product.id))}>
+              {/* ORDER MATTERS */}
+              <button
+                className="btn"
+                onClick={() => dispatch(removeFromCart(product.id))}
+              >
                 Remove
               </button>
 
-              <button className="btn" onClick={() => dispatch(toggleWishlist(product.id))}>
-                Add To Wishlist
+              <button
+                className="btn"
+                onClick={() => dispatch(incQty(product.id))}
+              >
+                +
               </button>
 
+              <button
+                className="btn"
+                onClick={() => dispatch(decQty(product.id))}
+              >
+                -
+              </button>
+
+              <button
+                className="btn"
+                onClick={() => dispatch(toggleWishlist(product.id))}
+              >
+                Add To Wishlist
+              </button>
             </div>
           </div>
         );
       })}
-
       {/* WISHLIST */}
       <h3>Wishlist</h3>
 
       {wishItems.map((id) => {
-        const product = PRODUCTS.find(p => p.id === id);
+        const product = PRODUCTS.find((p) => p.id === id);
 
         return (
           <div key={id} className="custom-card">
             <div className="card-body">
-
               <h4>{product.name}</h4>
 
-              <button className="btn" onClick={() => dispatch(toggleWishlist(product.id))}>
+              <button
+                className="btn"
+                onClick={() => dispatch(toggleWishlist(product.id))}
+              >
                 Remove
               </button>
-
             </div>
           </div>
         );
