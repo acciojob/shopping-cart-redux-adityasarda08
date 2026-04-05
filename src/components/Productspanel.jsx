@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, toggleWishlist } from "../redux/actions";
 import { PRODUCTS } from "../data/products";
 
-const Productspanel = () => {
+const ProductsPanel = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const wishItems = useSelector((state) => state.wishlist.items);
@@ -66,4 +66,4 @@ const Productspanel = () => {
   );
 };
 
-export default Productspanel;
+export default ProductsPanel;
